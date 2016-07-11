@@ -1,46 +1,25 @@
+import { By }           from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+
 import {
-  beforeEach,
-  beforeEachProviders,
-  describe,
-  expect,
-  it,
-  inject,
+  beforeEach, beforeEachProviders,
+  describe, xdescribe,
+  expect, it, xit,
+  async, inject
 } from '@angular/core/testing';
-import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testing';
-import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
+
 import { TodoAppComponent } from './todo-app.component';
+import { TodoService } from '../todo.service';
 
-describe('Component: TodoApp', () => {
-  let builder: TestComponentBuilder;
+beforeEachProviders(() => [ TodoAppComponent, TodoService ]);
 
-  beforeEachProviders(() => [TodoAppComponent]);
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
-  }));
+describe('Component: TodoApp', () =>
+{
+  it('должно создать экземпляр компонента', inject([ TodoService ], ( todoService: TodoService ) =>
+  {
+    let component = new TodoAppComponent(todoService);
 
-  it('should inject the component', inject([TodoAppComponent],
-      (component: TodoAppComponent) => {
+    expect(component).toBeTruthy();
     expect(component).toBeTruthy();
   }));
-
-  it('should create the component', inject([], () => {
-    return builder.createAsync(TodoAppComponentTestController)
-      .then((fixture: ComponentFixture<any>) => {
-        let query = fixture.debugElement.query(By.directive(TodoAppComponent));
-        expect(query).toBeTruthy();
-        expect(query.componentInstance).toBeTruthy();
-      });
-  }));
 });
-
-@Component({
-  selector: 'test',
-  template: `
-    <app-todo-app></app-todo-app>
-  `,
-  directives: [TodoAppComponent]
-})
-class TodoAppComponentTestController {
-}
-
