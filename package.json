@@ -1,7 +1,6 @@
 {
-  "name": "angular2-todo-app",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "angular2_crud",
+  "version": "1.0.0",
   "angular-cli": {},
   "scripts": {
     "start": "ng server",
@@ -11,7 +10,6 @@
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
     "@angular/compiler": "2.0.0-rc.1",
